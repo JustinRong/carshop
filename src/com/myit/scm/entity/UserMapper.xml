@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myit.scm.dao.UserDao">
+    <resultMap type="User" id="userResultMap">
+        <id property="userId" column="userid"/>
+        <result property="userName" column = "username"/>
+        <result property="password" column="password"/>
+        <result property="permission" column="permission"/>
+    </resultMap>
+    
+    <select id="selectOne" resultMap="userResultMap">
+        select * from user where username = #{0} and password = #{1}
+    </select>
+    
+    <insert id="addOne" parameterType="User">
+        insert into user(username,password,permission) values (#{userName},#{password},1)
+    </insert>
+    
+</mapper>

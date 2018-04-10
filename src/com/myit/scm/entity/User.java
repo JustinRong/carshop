@@ -6,6 +6,11 @@ public class User {
 	private String userName;//用户名称，也是登录账号
 	private String password;//用户密码
 	private boolean permission;//用户是否注册
+	private String address;//用户地址
+	private String phone;//用户联系电话
+	private String email;//用户邮箱
+	private String realName;//用户真实姓名
+	private String IdNum;//用户的身份证
 	
 	public User() {
 		super();
@@ -65,10 +70,54 @@ public class User {
 		this.permission = permission;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
+
+	public String getIdNum() {
+		return IdNum;
+	}
+
+	public void setIdNum(String idNum) {
+		IdNum = idNum;
+	}
+
 	@Override
 	public String toString() {
 		return "User [userId=" + userId + ", userName=" + userName + ", password=" + password + ", permission="
-				+ permission + "]";
+				+ permission + ", address=" + address + ", phone=" + phone + ", email=" + email + ", realName="
+				+ realName + ", IdNum=" + IdNum + "]";
 	}
+
+	
+	
 	
 }

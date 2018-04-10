@@ -22,7 +22,7 @@ import com.myit.scm.util.MemoryDataUtil;
 
 @Controller
 @RequestMapping(value = "/user")
-@SessionAttributes(value="UserName")
+@SessionAttributes(value="User")
 public class UserAction {
 	private Logger logger=LoggerFactory.getLogger(this.getClass());
 	
@@ -36,16 +36,23 @@ public class UserAction {
 		if (user == null ){
 			return null;
 		}
-		model.addAttribute("UserName", user.getuserName());
-		//存放用户的sessionID
+		model.addAttribute("User", user);
+		
+		/*//存放用户的sessionID
 		String sessionID = request.getRequestedSessionId();
 		String uname = user.getuserName();
+		System.out.println(sessionID);
 		if(!MemoryDataUtil.getSessionIDMap().containsKey(uname)){
 			MemoryDataUtil.getSessionIDMap().put(uname, sessionID);
-		}else if (MemoryDataUtil.getSessionIDMap().containsKey(uname)&&org.apache.commons.lang3.StringUtils.equals(sessionID, MemoryDataUtil.getSessionIDMap().get(uname))){
+			return user;
+		}else if (MemoryDataUtil.getSessionIDMap().containsKey(uname)){
 			MemoryDataUtil.getSessionIDMap().remove(uname);
 			MemoryDataUtil.getSessionIDMap().put(uname, sessionID);
+			return null;
 		}
+		
+		return null;
+		*/
 		return user;
 	}
 	

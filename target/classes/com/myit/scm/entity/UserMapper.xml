@@ -8,6 +8,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="userName" column = "username"/>
         <result property="password" column="password"/>
         <result property="permission" column="permission"/>
+        <result property="address" column="address"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="realName" column="realname"/>
+        <result property="IdNum" column="id_num"/>
     </resultMap>
     
     <select id="selectOne" resultMap="userResultMap">

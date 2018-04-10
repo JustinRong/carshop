@@ -21,7 +21,7 @@
 					<div class="header-right">
 						<ul class="follow_icon">
 							<li><span>欢迎你：</span></li>
-							<li><span>${UserName }</span></li>
+							<li><span>${User.userName }</span></li>
 							<li><div class="button-t">
 									<button style="height: 20px;" class="gray-button" onclick="out()"><span>Log out</span></button>
 								</div>
@@ -46,7 +46,7 @@
 						<li><a href="about.html">About</a></li>
 						<li><a href="specials.html">Specials</a></li>
 						<li><a href="new.html">New</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="contact.jsp">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
 				</div>

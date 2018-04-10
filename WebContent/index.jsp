@@ -133,7 +133,7 @@
 						<li><a href="about.html">About</a></li>
 						<li><a href="specials.html">Specials</a></li>
 						<li><a href="new.html">New</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<!-- <li><a href="contact.html">Contact</a></li> -->
 					</ul>
 					<div class="clear"></div> 
 				</div>

@@ -18,34 +18,15 @@
 		<div class="h-bg">
 			<div class="total">
 				<div class="header">
-					<div class="header-right">
-						<ul class="follow_icon">
-							<li><span>欢迎你：</span></li>
-							<li><span>${User.userName }</span></li>
-							<li><div class="button-t">
-									<button style="height: 20px;" class="gray-button" onclick="out()"><span>Log out</span></button>
-								</div>
-							</li>
-						</ul>
-					</div><div class="clear"></div> 
-					<div class="header-bot">
-						<div class="logo">
-							<a href="index.jsp"><img src="images/logo.png" alt=""/></a>
-						</div>
-						<div class="search">
-						    <input type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						    <button class="gray-button"><span>Search</span></button>
-				       </div>
-					<div class="clear"></div> 
-				</div>		
+						<jsp:include page="head.jsp" />
 		</div>	
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
 						<li class="active"><a href="index.jsp">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="specials.html">Specials</a></li>
-						<li><a href="new.html">New</a></li>
+						<li><a href="about.jsp">About</a></li>
+						<li><a href="specials.jsp">Specials</a></li>
+						<li><a href="new.jsp">New</a></li>
 						<li><a href="contact.jsp">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 

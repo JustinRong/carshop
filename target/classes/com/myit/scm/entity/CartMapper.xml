@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myit.scm.dao.CartDao">
+    <resultMap type="Cart" id="cartResultMap">
+        <id property="cartId" column="cart_id"/>
+        <result property="cartThings" column="cart_things"/>
+        <result property="cartPrice" column="cart_price"/>
+        <result property="cartAmount" column="cart_amount"/>
+        <result property="cartUserId" column="cart_user_id"/>
+    </resultMap>
+    
+   <!-- 添加购物车信息 -->
+   <insert id="insertOneCart" parameterType="Cart">
+       insert into cart(cart_id,cart_things,cart_price,cart_amount,cart_user_id) 
+       values (#{cartId},#{cartThings},#{cartPrice},#{cartAmount},#{cartUserId})     
+   </insert>
+   
+   <!-- 更新购物车中商品信息 -->
+   <update id="updateCartByUserId" parameterType="Cart">
+       update cart
+       <trim prefix="set" suffixOverrides=",">
+           <if test="cartPrice!=null">cart_price = #{cartPrice},</if>
+           <if test="cartAmount!=null">cart_amount = #{cartAmount},</if>
+       </trim>
+       where cart_user_id = #{cartUserId} and cart_things = #{cartThings}
+   </update>
+   
+   <!-- 查询购物车的数量 -->
+   <select id="selectAllThings" resultType="Integer">
+       select count(*) from cart where cart_user_id = #{_parameter}
+   </select>
+   
+   <!-- 通过userID查询购物车中是否有记录 -->
+   <select id="selectThingsByUserId" resultMap="cartResultMap">
+       select * from cart where cart_user_id = #{_parameter}
+   </select>
+   
+   <!-- 通过userid和carBrand来查询购物车中是否有记录 -->
+   <select id="selectByUserIdAndCarBrand" resultMap="cartResultMap">
+       select * from cart where cart_user_id = #{0} and cart_things=#{1}
+   </select>
+</mapper>

@@ -1,4 +1,6 @@
-<!DOCTYPE HTML>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html>
 <head>
 <title>Specials</title>
@@ -13,36 +15,16 @@
 		<div class="h-bg">
 			<div class="total">
 				<div class="header">
-					<div class="box_header_user_menu">
-						<ul class="user_menu"><li class="act first"><a href=""><div class="button-t"><span>Shipping &amp; Returns</span></div></a></li><li class=""><a href=""><div class="button-t"><span>Advanced Search</span></div></a></li><li class=""><a href=""><div class="button-t"><span>Create an Account</span></div></a></li><li class="last"><a href=""><div class="button-t"><span>Log in</span></div></a></li></ul>
-					</div>
-					<div class="header-right">
-						<ul class="follow_icon">
-							<li><a href="#"><img src="images/icon.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon1.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon2.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon3.png" alt=""/></a></li>
-						</ul>
-					</div><div class="clear"></div> 
-					<div class="header-bot">
-						<div class="logo">
-							<a href="index.html"><img src="images/logo.png" alt=""/></a>
-						</div>
-						<div class="search">
-						    <input type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						    <button class="gray-button"><span>Search</span></button>
-				       </div>
-					<div class="clear"></div> 
-				</div>		
+					<jsp:include page="head.jsp"></jsp:include>	
 		</div>	
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li class="active"><a href="specials.html">Specials</a></li>
-						<li><a href="new.html">New</a></li>
-						<li><a href="contact.html">Contact</a></li>
+						<li><a href="index.jsp">Home</a></li>
+						<li><a href="about.jsp">About</a></li>
+						<li class="active"><a href="specials.jsp">Specials</a></li>
+						<li><a href="new.jsp">New</a></li>
+						<li><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
 				</div>
@@ -251,11 +233,7 @@
 		   		 </div>
 				</div>
 	</div><div class="clear"></div>
-		<div class="footer-bottom">
-			<div class="copy">
-				<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
-			</div>
-		</div>
+		
 </div>
 </div>
 </div>
@@ -263,6 +241,14 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+    var flag = "${User.userName }";
+	if(flag != "" && flag != null){
+		document.getElementById("info").style.display="";
+	}else{
+		document.getElementById("info").style.display="none";
+	}
+</script>
 </html>
 
     	

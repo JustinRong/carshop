@@ -23,4 +23,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         insert into user(username,password,permission) values (#{userName},#{password},1)
     </insert>
     
+    <update id="updateOne" parameterType="User">
+        update user
+        <trim suffixOverrides=",">
+        set realname = #{realName},phone=#{phone},address=#{address},id_num=#{IdNum},
+        
+        	<if test="email!=null">
+        	   email = #{email},
+        	</if>
+        </trim>
+        where username = #{userName}
+    </update>
+    
+    <!-- 通过username来查询userID -->
+    <select id="selectIdByName" resultType="Integer">
+        select userid from user where username = #{_parameter}
+    </select>
 </mapper>

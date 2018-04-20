@@ -25,4 +25,16 @@ public class UserServiceImpl implements UserService {
 		return userDao.addOne(user);
 	}
 
+	@Override
+	public int updateOne(User user) {
+		// TODO Auto-generated method stub
+		return userDao.updateOne(user);
+	}
+
+	@Override
+	public int selectIdByName(String username) {
+		// TODO Auto-generated method stub
+		return userDao.selectIdByName(username);
+	}
+
 }

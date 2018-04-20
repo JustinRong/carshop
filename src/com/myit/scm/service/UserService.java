@@ -8,4 +8,10 @@ public interface UserService {
 	
 	//添加用户
 	public int addOne (User user);
+	
+	//更新用户信息
+	public int updateOne(User user);
+	
+	//通过username来查询userID
+	public int selectIdByName(String username);
 }

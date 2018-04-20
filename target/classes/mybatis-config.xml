@@ -7,10 +7,14 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 	    <typeAlias type="com.myit.scm.entity.Dept" alias="Dept"/>
 	    <typeAlias type="com.myit.scm.entity.User" alias="User"/>
+	    <typeAlias type="com.myit.scm.entity.Cars" alias="Cars"/>
+	    <typeAlias type="com.myit.scm.entity.Cart" alias="Cart"/>
 	</typeAliases>
 	
 	<mappers>
 	    <mapper resource="com/myit/scm/entity/DeptMapper.xml"/>
 	    <mapper resource="com/myit/scm/entity/UserMapper.xml"/>
+	    <mapper resource="com/myit/scm/entity/CarsMapper.xml"/>
+	    <mapper resource="com/myit/scm/entity/CartMapper.xml"/>
 	</mappers>
 </configuration>

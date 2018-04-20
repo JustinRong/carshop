@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myit.scm.dao.CarsDao">
+    <resultMap type="Cars" id="carsResultMap">
+        <id property="carId" column="car_id"/>
+        <result property="carPrice" column="car_price"/>
+        <result property="carInstruction" column="car_instruction"/>
+        <result property="carAmount" column="car_amount"/>
+        <result property="carBrand" column="car_brand"/>
+        <result property="carUrl" column="car_url"/>
+    </resultMap>
+    
+    <!-- 通过车品牌来模糊查询 -->
+    <select id="selectAllOrOne" parameterType="java.lang.String" resultMap="carsResultMap">
+        select * from cars
+            where car_brand like #{_parameter} limit 3
+    </select>
+    
+    <!-- 通过车Id来条件查询 -->
+    <select id="selectOneById" parameterType="Integer" resultMap="carsResultMap">
+        select * from cars where car_id = #{_parameter}
+    </select>
+</mapper>

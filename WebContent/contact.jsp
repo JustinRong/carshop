@@ -5,7 +5,8 @@
 <title>information</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>   
+<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'> 
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>  
 <script type="text/javascript">
 	function judeInput(){
 		var realname = document.getElementById("realname");
@@ -24,6 +25,7 @@
 			return false;
 		}
 		if (phone.value != "" && phone.value != null){
+			var phoneValue = phone.value;
 			var myreg=/^[1][3,4,5,7,8][0-9]{9}$/;
 			if (!myreg.test(phone.value)){
 				alert("手机号码格式不正确！");
@@ -32,17 +34,24 @@
 			}
 		}
 		if (email.value != "" && email.value != null){
+			var emaiValue = email.value;
 			var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); 
 			if (!reg.test(email.value)){
 				alert("邮箱格式错误");
 				email.focus();
+				return false;
 			}
+		}
+		if (email.value == "" && email.value == null){
+			var emailValue = null;
 		}
 		if (idnum.value == "" || idnum == null ){
 			alert("身份证信息不能为空！");
 			idnum.focus();
+			return false;
 		}
-		if (idnum != "" && idnum != null) {
+		/* if (idnum != "" && idnum != null) {
+			var idnumValue = idnum.value;
 			 var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
 	            var tip = "";
 	            var pass= true;
@@ -82,7 +91,35 @@
 	                }
 	            }
 	            if(!pass) alert(tip);
+	            return false;
+		} */
+		if (idnum != "" && idnum != null) {
+			var idnumValue = idnum.value;
 		}
+		var realnameValue = realname.value;
+		if(address.value!=null && address.value != ""){
+			addressValue = address.value;
+		}
+		var username = "${User.userName}";
+		$.ajax({
+			url:"./user/update.action",
+			data:{"userName":username,"realName":realnameValue,"email":emaiValue,"phone":phoneValue,"IdNum":idnumValue,"address":addressValue},
+			type:"post",
+			dataType:"json",
+			success:function(data){
+				var key = data.key;
+				if (key!=0){
+					alert("更新信息成功！");
+				}
+				if(key == 0){
+					alert("更新信息失败！");
+				}
+			}
+		})
+	}
+	function outLogin(){
+		alert("注销成功！5秒后跳转");
+		window.location.href='index.jsp';   
 	}
 </script>
 </head>
@@ -92,35 +129,16 @@
 		<div class="h-bg">
 			<div class="total">
 				<div class="header">
-					<div class="box_header_user_menu">
-						<ul class="follow_icon">
-							<li><span>欢迎你：</span></li>
-							<li><span>${UserName }</span></li>
-							<li><div class="button-t">
-									<button style="height: 20px;" class="gray-button" onclick="out()"><span>Log out</span></button>
-								</div>
-							</li>
-						</ul>
-					</div><div class="clear"></div> 
-					<div class="header-bot">
-						<div class="logo">
-							<a href="index2.jsp"><img src="images/logo.png" alt=""/></a>
-						</div>
-						<div class="search">
-						    <input type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						    <button class="gray-button"><span>Search</span></button>
-				       </div>
-					<div class="clear"></div> 
-				</div>		
+				<jsp:include page="head.jsp" />
 		</div>	
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index2.jsp">Home</a></li>
+						<li><a href="index.jsp">Home</a></li>
 						<li><a href="about.html">About</a></li>
 						<li><a href="specials.html">Specials</a></li>
 						<li><a href="new.html">New</a></li>
-						<li class="active"><a href="contact.jsp">个人信息</a></li>
+						<li class="active"><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
 				</div>
@@ -234,11 +252,7 @@
 				</div>
 	</div>
 		<div class="clear"></div>
-		<div class="footer-bottom">
-			<!-- <div class="copy">
-				<p>Copyright &copy; 2016.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="æ¨¡æ¿ä¹å®¶">æ¨¡æ¿ä¹å®¶</a> - Collect from <a href="http://www.cssmoban.com/" title="ç½é¡µæ¨¡æ¿" target="_blank">ç½é¡µæ¨¡æ¿</a></p>
-			</div> -->
-		</div>
+		
 </div>
 </div>
 </div>
@@ -246,6 +260,14 @@
 </div>
 </div>
 </body>
+<script type="text/javascript">
+    var flag = "${User.userName }";
+	if(flag != "" && flag != null){
+		document.getElementById("info").style.display="";
+	}else{
+		document.getElementById("info").style.display="none";
+	}
+</script>
 </html>
 
     	

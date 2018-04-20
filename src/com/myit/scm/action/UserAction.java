@@ -3,7 +3,7 @@ package com.myit.scm.action;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,7 +37,6 @@ public class UserAction {
 			return null;
 		}
 		model.addAttribute("User", user);
-		
 		/*//存放用户的sessionID
 		String sessionID = request.getRequestedSessionId();
 		String uname = user.getuserName();
@@ -70,5 +69,36 @@ public class UserAction {
 			}
 		}
 		return "{\"key\":\"no\"}";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/update")
+	public String updateUser(String userName,String realName,String email,String phone,String IdNum,String address) {
+		if(userName !=null && userName != "" && realName!=null && realName!="" && phone!=null && phone != "" && IdNum != null && IdNum !="" && address !=null && address != ""){
+			User user  = new User();
+			user.setuserName(userName);
+			user.setRealName(realName);
+			if (email != null && email != "") {
+				System.out.println("____________________"+email);
+				user.setEmail(email);
+			}
+			user.setPhone(phone);
+			user.setIdNum(IdNum);
+			user.setAddress(address);
+			System.out.println("*****************"+user.getEmail());
+			int updateOne = userService.updateOne(user);
+			if(updateOne != 0 ){
+				return "{\"key\":\"1\"}";
+			}
+		}
+		return "{\"key\":\"0\"}";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/loginOut")
+	public String loginOut(ModelMap model,HttpServletResponse response){
+		User user =new User();
+		model.addAttribute("User", user);
+		return "{\"key\":\"0\"}";
 	}
 }

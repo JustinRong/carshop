@@ -22,4 +22,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectOneById" parameterType="Integer" resultMap="carsResultMap">
         select * from cars where car_id = #{_parameter}
     </select>
+    
+    <!-- 通过车id跟车品牌来更新数量 -->
+    <update id="updateAmountByIdAndBrand" parameterType="Cars">
+        update cars set car_amount = #{carAmount} where car_id =#{carId} and car_brand=#{carBrand}
+    </update> 
 </mapper>

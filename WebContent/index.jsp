@@ -11,7 +11,25 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script src="js/superfish.js"></script>
-
+<script type="text/javascript">
+	function selectCart(){
+		var flag = "${User.userName }";
+		if(flag != "" && flag != null){
+			$.ajax({
+				url:"./cart/selectCartAll.action",
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data.key == 0) {
+						window.location.href="new.jsp";
+					}
+				}
+			})
+		}else{
+			window.location.href="new.jsp";
+		}
+	}
+</script>
 </head>
 <body>
 <div class="header-bg">
@@ -24,10 +42,10 @@
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li class="active"><a href="index.jsp">Home</a></li>
-						<li><a href="about.jsp">About</a></li>
-						<li><a href="specials.jsp">Specials</a></li>
-						<li><a href="new.jsp">New</a></li>
+						<li class="active"><a href="index.jsp">主页</a></li>
+						<li><a href="about.jsp">详情</a></li>
+						<li><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectCart()">购物车</a></li>
 						<li id="info"><a href="contact.jsp" >个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
@@ -48,7 +66,7 @@
 				  	</div>
 		  			<div class="content-wrapper">		  
 						<div class="content-top">
-							  	<div class="box_wrapper"><h1>New Products For July</h1>
+							  	<div class="box_wrapper"><h1>搜索车型列表：</h1>
 								</div>
 							 <div class="text"> 	
 								  <jsp:include page="items.jsp" />
@@ -56,7 +74,7 @@
 								</div>
 						</div>
 						<div class="content-top">
-							  	<div class="box_wrapper"><h1>Featured Products</h1>
+							  	<div class="box_wrapper"><h1>新型车型：</h1>
 								</div>
 							 <div class="text"> 	
 								<div class="grid_1_of_3 images_1_of_3">
@@ -125,36 +143,10 @@
 		</div>
 		<div class="header-para">
 				<div class="categories">
-						<div class="list-categories">
-							<div class="first-list">
-								<div class="div_2"><a href="">Cars</a></div>
-								<div class="div_img">
-									<img src="images/car1.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Rental</a></div>
-								<div class="div_img">
-									<img src="images/car2.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Banking</a></div>
-								<div class="div_img">
-									<img src="images/car3.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Trucks</a></div>
-								<div class="div_img">
-									<img src="images/car4.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-				</div>
 				<div class="box"> 
-							<div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
+							<div class="box-heading"><h1><a href="#" onclick="selectCart()">购物车:&nbsp;</a></h1></div>
 							 <div class="box-content">
-							Now in your cart&nbsp;<strong> ${Cart } items</strong>
+							现在在你的购物车中有&nbsp;<strong> <%=session.getAttribute("cartCount")==null?0:session.getAttribute("cartCount") %> 项</strong>
 							</div>	
 				</div>
 				<div class="box-title">

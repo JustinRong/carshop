@@ -113,39 +113,21 @@
 	<div class="box_header_user_menu">
 						<ul class="user_menu">
 						<form id="loginForm" name="loginAndRegister" action="" method="post">
-							<li class="act first">username: <input type="text" class="textbox" id="username" name="username"></li>
-							<li class="">password: <input type="password" class="textbox" name="password" id="password"></li>
+							<li class="act first">登录账号: <input type="text" class="textbox" id="username" name="username"></li>
+							<li class="">密&nbsp;&nbsp;码: <input type="password" class="textbox" name="password" id="password"></li>
 						</form>
 								<li class="last">
 										<div class="button-t">
-											<button style="height: 20px;" class="gray-button" onclick="login()"><span>Log in</span></button>
+											<button style="height: 20px;" class="gray-button" onclick="login()"><span>登入</span></button>
 										</div>
 								</li>
 								<li class="">
 									<div class="button-t">
-										<button style="height: 20px;" class="gray-button" onclick="register()"><span>Register</span></button>
+										<button style="height: 20px;" class="gray-button" onclick="register()"><span>注册</span></button>
 									</div>
 								</li>
 								</ul>
 					</div>
-					<div class="header-right">
-						<ul class="follow_icon" style="display:none">
-							<li><a href="#"><img src="images/icon.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon1.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon2.png" alt=""/></a></li>
-							<li><a href="#"><img src="images/icon3.png" alt=""/></a></li>
-						</ul>
-					</div><div class="clear"></div> 
-					<div class="header-bot">
-						<div class="logo">
-							<a href="index.jsp"><img src="images/logo.png" alt=""/></a>
-						</div>
-						<div class="search">
-						    <input type="text" id="searchForCars" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						    <button class="gray-button" onclick="searchCars()"><span>Search</span></button>
-				       </div>
-					<div class="clear"></div> 
-				</div>
 </div>
 <div id="header_user_logined" style="display: none;">
 <div class="header-right">
@@ -153,22 +135,23 @@
 							<li><span>欢迎你：</span></li>
 							<li><span>${User.userName }</span></li>
 							<li><div class="button-t">
-									<button style="height: 20px;" class="gray-button" onclick="loginOut()"><span>Log out</span></button>
+									<button style="height: 20px;" class="gray-button" onclick="loginOut()"><span>登出</span></button>
 								</div>
 							</li>
 						</ul>
-					</div><div class="clear"></div> 
+					</div>
+</div>	
+<div class="clear"></div> 
 					<div class="header-bot">
 						<div class="logo">
 							<a href="index.jsp"><img src="images/logo.png" alt=""/></a>
 						</div>
 						<div class="search">
-						    <input type="text" class="textbox" value="" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}">
-						    <button class="gray-button"><span>Search</span></button>
+						    <input type="text" id="searchForCars" class="textbox" value="<%=session.getAttribute("carBrand")==null?"":session.getAttribute("carBrand") %>" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '';}" >
+						    <button class="gray-button" onclick="searchCars()"><span>搜索</span></button>
 				       </div>
 					<div class="clear"></div> 
 				</div>
-</div>	
 </body>
 <script type="text/javascript">
     var flag = "${User.userName }";

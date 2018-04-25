@@ -1,5 +1,8 @@
 package com.myit.scm.service.impl;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +44,12 @@ public class CartServiceImpl implements CartService {
 	public Cart selectByUserIdAndCarBrand(int cartUserId, String carBrand) {
 		// TODO Auto-generated method stub
 		return cartDao.selectByUserIdAndCarBrand(cartUserId, carBrand);
+	}
+
+	@Override
+	public List<Cart> selectCartAll() {
+		// TODO Auto-generated method stub
+		return cartDao.selectCartAll();
 	}
 
 }

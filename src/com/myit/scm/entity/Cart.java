@@ -45,6 +45,13 @@ public class Cart {
 	public void setCartAmount(int cartAmount) {
 		this.cartAmount = cartAmount;
 	}
+	@Override
+	public String toString() {
+		return "Cart [cartId=" + cartId + ", cartThings=" + cartThings + ", cartPrice=" + cartPrice + ", cartAmount="
+				+ cartAmount + ", cartUserId=" + cartUserId + ", cars=" + cars + "]";
+	}
+	
+	
 	
 	
 	

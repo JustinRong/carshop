@@ -4,6 +4,7 @@ package com.myit.scm.action;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myit.scm.entity.User;
+import com.myit.scm.service.CartService;
 import com.myit.scm.service.UserService;
 import com.myit.scm.util.MemoryDataUtil;
 
@@ -28,15 +30,23 @@ public class UserAction {
 	
 	@Resource
 	private UserService userService;
+	@Resource
+	private CartService cartService;
 
 	@ResponseBody
 	@RequestMapping(value="/login")
-	public User login(String username,  String password, ModelMap model,HttpServletRequest request) {
+	public User login(String username,  String password, ModelMap model,HttpSession session) {
 		User user = userService.selectOne(username,password);
 		if (user == null ){
 			return null;
 		}
 		model.addAttribute("User", user);
+		int allThings = cartService.selectAllThings(user.getuserId());
+		if(allThings>0){
+			System.out.println("**********************"+allThings);
+			/*model.addAttribute("Cart", allThings);*/
+			session.setAttribute("cartCount", allThings);
+		}
 		/*//存放用户的sessionID
 		String sessionID = request.getRequestedSessionId();
 		String uname = user.getuserName();
@@ -58,7 +68,7 @@ public class UserAction {
 	@ResponseBody
 	@RequestMapping(value = "/register")
 	public String addUser (String username, String password){
-		User user = login(username, password, null,null);
+		User user = userService.selectByUserName(username);
 		if(user!=null && user.getPermission() == true){
 			return "{\"key\":\"isRegisted\"}";
 		}else{

@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" 
+           uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -19,10 +21,10 @@
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="about.jsp">About</a></li>
-						<li><a href="specials.jsp">Specials</a></li>
-						<li class="active"><a href="new.jsp">New</a></li>
+						<li><a href="index.jsp">主页</a></li>
+						<li><a href="about.jsp">详情</a></li>
+						<li><a href="specials.jsp">车型</a></li>
+						<li class="active"><a href="new.jsp">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
@@ -36,72 +38,13 @@
 							  	<div class="about_wrapper"><h1>Specials</h1>
 								</div>
 							 <div class="text"> 	
-								<div class="grid_1_of_3 images_1_of_3">
-									<div class="grid_1">
-										<a href="single.html"><img src="images/pic12.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-							</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic13.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic14.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div><div class="clear"></div>
+									<jsp:include page="cartItems.jsp" />
+									<div class="clear"></div>
 								</div>
 						</div>
 						<div class="content-top">
-							  	<div class="box_wrapper"><h1>Featured Products</h1>
-								</div>
-							 <div class="text"> 	
+							  	
+							 <!-- <div class="text"> 	
 								<div class="grid_1_of_3 images_1_of_3">
 									<div class="grid_1">
 										<a href="single.html"><img src="images/pic15.jpg" title="continue reading" alt=""></a>
@@ -162,10 +105,10 @@
 											</div>
 								</div><div class="clear"></div>
 									</div><div class="clear"></div>
-								</div>
+								</div> -->
 						</div>
 				</div>
-				<div class="paging">
+				<!-- <div class="paging">
 		            <ul>
 		                <li><a href="#" target="_parent">Previous</a></li>
 		                <li><a href="#" target="_parent">1</a></li>
@@ -176,11 +119,11 @@
 		                <li><a href="#" target="_parent">6</a></li>
 		                <li><a href="#" target="_parent">Next</a></li>
 		            </ul>
-       			</div>
+       			</div> -->
 		</div>
 		<div class="header-para">
 				<div class="categories">
-						<div class="list-categories">
+						<!-- <div class="list-categories">
 							<div class="first-list">
 								<div class="div_2"><a href="">Cars</a></div>
 								<div class="div_img">
@@ -205,7 +148,7 @@
 									<img src="images/car4.jpg" alt="Cars" title="Cars" width="60" height="39">
 								</div><div class="clear"></div>
 							</div>
-				</div>
+				</div> -->
 				<div class="box"> 
 							<div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
 							 <div class="box-content">
@@ -239,6 +182,7 @@
 </div>
 </div>
 </div>
+
 </body>
 <script type="text/javascript">
     var flag = "${User.userName }";

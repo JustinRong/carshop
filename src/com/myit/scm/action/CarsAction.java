@@ -7,6 +7,7 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -25,11 +26,19 @@ public class CarsAction {
 	@Resource
 	private CarsService carsService;
 	
+	/**
+	 * 通过条形栏输入车型进行模糊查询
+	 * @param model
+	 * @param carBrand
+	 * @param session
+	 * @return
+	 */
 	@RequestMapping(value="/searchCars")
 	@ResponseBody
-	public String selectCars(ModelMap model,String carBrand){
+	public String selectCars(ModelMap model,String carBrand,HttpSession session){
 		List<Cars> carsList = carsService.selectAllOrOne("%"+carBrand+"%");
 		if (carsList != null) {
+			session.setAttribute("carBrand", carBrand);
 			model.addAttribute("Cars", carsList);
 			for (int i=0;i<carsList.size();i++){
 				Cars cars = carsList.get(i);
@@ -37,5 +46,18 @@ public class CarsAction {
 			}
 		}
 		return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/searchOneCar")
+	@ResponseBody
+	public String selectOneCar(int carId,HttpSession session){
+		if(carId >0){
+			Cars car = carsService.selectOneById(carId);
+			if (car !=null){
+				session.setAttribute("carDetail", car);
+				return "{\"url\":\"carDetail.jsp\"}";
+			}
+		}
+		return "{\"url\":\"1\"}";
 	}
 }

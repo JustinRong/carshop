@@ -41,4 +41,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="selectByUserIdAndCarBrand" resultMap="cartResultMap">
        select * from cart where cart_user_id = #{0} and cart_things=#{1}
    </select>
+   
+   <!-- 查询购物车中所有的商品信息 -->
+   <select id="selectCartAll" resultMap="cartResultMap">
+       select * from cart
+   </select>
 </mapper>

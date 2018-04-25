@@ -1,5 +1,8 @@
 package com.myit.scm.service;
 
+import java.util.List;
+import java.util.Map;
+
 import com.myit.scm.entity.Cart;
 
 public interface CartService {
@@ -18,4 +21,7 @@ public interface CartService {
 	
 	//更新数据库中购物车的商品信息
 	public int updateCartByUserId(Cart cart);
+	
+	//查询购物车中所有的商品信息
+	public List<Cart> selectCartAll();
 }

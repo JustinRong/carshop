@@ -4,11 +4,36 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<title>New</title>
+<title>Cart</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>   
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/CarDetail.js"></script>
+<script type="text/javascript" src="js/menu.js">
+</script>
+<style >
+.sumBtn {
+    border: 1px solid #D9D9D9;
+    border-bottom: 1px solid #B9B9B9;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    background: #F5F5F5;
+    float: right;
+    padding: 7px 20px;
+    color: #D54F30;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer
+}
+.userInfo th {
+    font-size: 15px;
+    color: #D54F30;
+    line-height: 1.6em;
+    margin-top: 9%;
+}
+.userInfo td {
+	text-align: center;
+}
+</style>
 </head>
 <body>
 <div class="header-bg">
@@ -24,7 +49,7 @@
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">详情</a></li>
 						<li><a href="specials.jsp">车型</a></li>
-						<li class="active"><a href="new.jsp">购物车</a></li>
+						<li class="active"><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
@@ -35,145 +60,36 @@
 				 <div class="header_bottom_right_images">
 				     	<div class="content-wrapper">		  
 						<div class="content-top">
-							  	<div class="about_wrapper"><h1>Specials</h1>
+							  	<div class="about_wrapper"><h1>地址信息：</h1>
+							  	<table class="userInfo" style="width:100%;">
+							  		<tr>
+							  			<th>账&nbsp;&nbsp;号</th>
+							  			<th>收货人</th>
+							  			<th>电话号码</th>
+							  			<th>地址</th>
+							  		</tr>
+							  		<tr>
+							  			<td>${User.userName }</td>
+							  			<td>${User.realName }</td>
+							  			<td>${User.phone }</td>
+							  			<td>${User.address }</td>
+							  		</tr>
+							  	</table>
 								</div>
+							<div>
 							 <div class="text"> 	
 									<jsp:include page="cartItems.jsp" />
 									<div class="clear"></div>
 								</div>
+								<!-- <button class="sumBtn"><span>结算</span></button> -->
+								</div>
 						</div>
 						<div class="content-top">
-							  	
-							 <!-- <div class="text"> 	
-								<div class="grid_1_of_3 images_1_of_3">
-									<div class="grid_1">
-										<a href="single.html"><img src="images/pic15.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-							</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic16.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic17.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div><div class="clear"></div>
-								</div> -->
 						</div>
 				</div>
-				<!-- <div class="paging">
-		            <ul>
-		                <li><a href="#" target="_parent">Previous</a></li>
-		                <li><a href="#" target="_parent">1</a></li>
-		                <li><a href="#" target="_parent">2</a></li>
-		                <li><a href="#" target="_parent">3</a></li>
-		                <li><a href="#" target="_parent">4</a></li>
-		                <li><a href="#" target="_parent">5</a></li>
-		                <li><a href="#" target="_parent">6</a></li>
-		                <li><a href="#" target="_parent">Next</a></li>
-		            </ul>
-       			</div> -->
+				
 		</div>
-		<div class="header-para">
-				<div class="categories">
-						<!-- <div class="list-categories">
-							<div class="first-list">
-								<div class="div_2"><a href="">Cars</a></div>
-								<div class="div_img">
-									<img src="images/car1.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Rental</a></div>
-								<div class="div_img">
-									<img src="images/car2.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Banking</a></div>
-								<div class="div_img">
-									<img src="images/car3.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Trucks</a></div>
-								<div class="div_img">
-									<img src="images/car4.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-				</div> -->
-				<div class="box"> 
-							<div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
-							 <div class="box-content">
-							Now in your cart&nbsp;<strong> 0 items</strong>
-							</div>	
-				</div>
-				<div class="box-title">
-					<h1><span class="title-icon"></span><a href="">Specials</a></h1>
-				</div>
-				<div class="section group example">
-					<div class="col_1_of_2 span_1_of_2">
-					  <img src="images/pic21.jpg" alt=""/>
-					   <img src="images/pic24.jpg" alt=""/>
-					   <img src="images/pic25.jpg" alt=""/>
-					   <img src="images/pic27.jpg" alt=""/>
-	 				</div>
-					<div class="col_1_of_2 span_1_of_2">
-						 <img src="images/pic22.jpg" alt=""/>
-					  	<img src="images/pic23.jpg" alt=""/>
-					  	<img src="images/pic26.jpg" alt=""/>
-					  	<img src="images/pic28.jpg" alt=""/>
-					  </div><div class="clear"></div>
-		   		 </div>
-				</div>
-		</div>
+		<jsp:include page="right.jsp" />
 		<div class="clear"></div>
 		
 </div>

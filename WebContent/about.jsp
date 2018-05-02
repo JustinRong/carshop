@@ -5,9 +5,9 @@
 <head>
 <title>About</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>   
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/menu.js">
+</script>
 </head>
 <body>
 <div class="header-bg">
@@ -20,10 +20,10 @@
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index.jsp">Home</a></li>
-						<li class="active"><a href="about.jsp">About</a></li>
-						<li><a href="specials.jsp">Specials</a></li>
-						<li><a href="new.jsp">New</a></li>
+						<li><a href="index.jsp">主页</a></li>
+						<li class="active"><a href="about.jsp">详情</a></li>
+						<li><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li> 
 					</ul>
 					<div class="clear"></div> 
@@ -80,59 +80,7 @@
 					</div>
 		   </div>
 		</div>
-		<div class="header-para">
-				<div class="categories">
-						<div class="list-categories">
-							<div class="first-list">
-								<div class="div_2"><a href="">Cars</a></div>
-								<div class="div_img">
-									<img src="images/car1.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Rental</a></div>
-								<div class="div_img">
-									<img src="images/car2.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Banking</a></div>
-								<div class="div_img">
-									<img src="images/car3.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Trucks</a></div>
-								<div class="div_img">
-									<img src="images/car4.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-				</div>
-				<div class="box"> 
-							<div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
-							 <div class="box-content">
-							Now in your cart&nbsp;<strong> 0 items</strong>
-							</div>	
-				</div>
-				<div class="box-title">
-					<h1><span class="title-icon"></span><a href="">Specials</a></h1>
-				</div>
-				<div class="section group example">
-					<div class="col_1_of_2 span_1_of_2">
-					  <img src="images/pic21.jpg" alt=""/>
-					   <img src="images/pic24.jpg" alt=""/>
-					   <img src="images/pic25.jpg" alt=""/>
-					   <img src="images/pic27.jpg" alt=""/>
-	 				</div>
-					<div class="col_1_of_2 span_1_of_2">
-						 <img src="images/pic22.jpg" alt=""/>
-					  	<img src="images/pic23.jpg" alt=""/>
-					  	<img src="images/pic26.jpg" alt=""/>
-					  	<img src="images/pic28.jpg" alt=""/>
-					  </div><div class="clear"></div>
-		   		 </div>
-				</div>
-	</div>
+		<jsp:include page="right.jsp" />
 		<div class="clear"></div>
 		
 		</div>

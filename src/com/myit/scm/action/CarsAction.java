@@ -48,7 +48,7 @@ public class CarsAction {
 		return "{\"key\":\"0\"}";
 	}
 	
-	@RequestMapping(value="/searchOneCar")
+	/*@RequestMapping(value="/searchOneCar")
 	@ResponseBody
 	public String selectOneCar(int carId,HttpSession session){
 		if(carId >0){
@@ -59,5 +59,5 @@ public class CarsAction {
 			}
 		}
 		return "{\"url\":\"1\"}";
-	}
+	}*/
 }

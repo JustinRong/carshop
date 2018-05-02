@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myit.scm.dao.CarDetailDao">
+    <resultMap type="CarDetail" id="CarDetailResultMap">
+        <id property="carDetailId" column="car_detail_id"/>
+        
+        <result property="carId" column="car_id"/>
+        <result property="carVendor" column="car_Vendor"/>
+        <result property="carLevel" column="car_level"/>
+        <result property="carEnergyType" column="car_Energy_type"/>
+        <result property="carTimeToMarket" column="car_Time_to_market"/>
+        <result property="carMaxPower" column="car_Max_power"/>
+        <result property="carMaxTorque" column="car_Max_torque"/>
+        <result property="carEngine" column="car_engine"/>
+        <result property="carTransmission" column="car_Transmission"/>
+        <result property="carBody" column="car_body"/>
+        <result property="carBodyStructure" column="car_Body_structure"/>
+        <result property="carHighestSpeed" column="car_highest_speed"/>
+        <result property="carAccelerationSeconds" column="car_Acceleration_seconds"/>
+        <result property="carVehicleWarranty" column="car_Vehicle_warranty"/>
+        <result property="carImage1" column="car_image1"/>
+        <result property="carImage2" column="car_image2"/>
+        <result property="carImage3" column="car_image3"/>
+    </resultMap>
+    
+    <!-- 根据车id来查询车辆具体信息 -->
+    <select id="selectByCarId" resultMap="CarDetailResultMap">
+        select * from carDetail where car_id = #{_parameter} 
+    </select>
+    
+</mapper>

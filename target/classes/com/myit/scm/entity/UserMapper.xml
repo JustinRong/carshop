@@ -37,11 +37,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <!-- 通过username来查询userID -->
     <select id="selectIdByName" resultType="Integer">
-        select userid from user where username = #{_parameter}
+        select userid from user where username = #{_parameter} and permission=1
     </select>
     
     <!-- 通过username来查询是否有user用户 -->
     <select id="selectByUserName" resultMap="userResultMap">
-        select * from user where username= #{_parameter}
+        select * from user where username= #{_parameter} and permission=1
     </select>
 </mapper>

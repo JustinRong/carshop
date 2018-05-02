@@ -9,6 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	    <typeAlias type="com.myit.scm.entity.User" alias="User"/>
 	    <typeAlias type="com.myit.scm.entity.Cars" alias="Cars"/>
 	    <typeAlias type="com.myit.scm.entity.Cart" alias="Cart"/>
+	    <typeAlias type="com.myit.scm.entity.CarDetail" alias="CarDetail"/>
 	</typeAliases>
 	
 	<mappers>
@@ -16,5 +17,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	    <mapper resource="com/myit/scm/entity/UserMapper.xml"/>
 	    <mapper resource="com/myit/scm/entity/CarsMapper.xml"/>
 	    <mapper resource="com/myit/scm/entity/CartMapper.xml"/>
+	    <mapper resource="com/myit/scm/entity/CarDetailMapper.xml"/>
 	</mappers>
 </configuration>

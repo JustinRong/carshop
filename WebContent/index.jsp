@@ -11,25 +11,6 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script src="js/script.js" type="text/javascript"></script>
 <script src="js/superfish.js"></script>
-<script type="text/javascript">
-	function selectCart(){
-		var flag = "${User.userName }";
-		if(flag != "" && flag != null){
-			$.ajax({
-				url:"./cart/selectCartAll.action",
-				type:"post",
-				dataType:"json",
-				success:function(data){
-					if(data.key == 0) {
-						window.location.href="new.jsp";
-					}
-				}
-			})
-		}else{
-			window.location.href="new.jsp";
-		}
-	}
-</script>
 </head>
 <body>
 <div class="header-bg">
@@ -45,7 +26,7 @@
 						<li class="active"><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">详情</a></li>
 						<li><a href="specials.jsp">车型</a></li>
-						<li><a href="#" onclick="selectCart()">购物车</a></li>
+						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li id="info"><a href="contact.jsp" >个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
@@ -141,34 +122,7 @@
 						</div>
 				</div>
 		</div>
-		<div class="header-para">
-				<div class="categories">
-				<div class="box"> 
-							<div class="box-heading"><h1><a href="#" onclick="selectCart()">购物车:&nbsp;</a></h1></div>
-							 <div class="box-content">
-							现在在你的购物车中有&nbsp;<strong> <%=session.getAttribute("cartCount")==null?0:session.getAttribute("cartCount") %> 项</strong>
-							</div>	
-				</div>
-				<div class="box-title">
-					<h1><span class="title-icon"></span><a href="">Branches</a></h1>
-				</div>
-				<div class="section group example">
-					<div class="col_1_of_2 span_1_of_2">
-					  <img src="images/pic21.jpg" alt=""/>
-					   <img src="images/pic24.jpg" alt=""/>
-					   <img src="images/pic25.jpg" alt=""/>
-					   <img src="images/pic27.jpg" alt=""/>
-	 				</div>
-					<div class="col_1_of_2 span_1_of_2">
-						 <img src="images/pic22.jpg" alt=""/>
-					  	<img src="images/pic23.jpg" alt=""/>
-					  	<img src="images/pic26.jpg" alt=""/>
-					  	<img src="images/pic28.jpg" alt=""/>
-					  </div><div class="clear"></div>
-		   		 </div>
-				<div class="clear"></div>
-				</div>
-	</div>
+		<jsp:include page="right.jsp" />
 		<div class="clear"></div>
 		
 </div>

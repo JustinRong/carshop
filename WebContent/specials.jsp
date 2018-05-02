@@ -5,9 +5,9 @@
 <head>
 <title>Specials</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'>   
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/menu.js">
+</script>
 </head>
 <body>
 <div class="header-bg">
@@ -20,10 +20,10 @@
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="about.jsp">About</a></li>
-						<li class="active"><a href="specials.jsp">Specials</a></li>
-						<li><a href="new.jsp">New</a></li>
+						<li><a href="index.jsp">主页</a></li>
+						<li><a href="about.jsp">详情</a></li>
+						<li class="active"><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 

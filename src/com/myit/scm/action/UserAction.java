@@ -111,4 +111,15 @@ public class UserAction {
 		model.addAttribute("User", user);
 		return "{\"key\":\"0\"}";
 	}
+	
+	/*@RequestMapping(value="/selectInfo")
+	public String selectUserInfo(String userName){
+		if (userName!=null&&userName!=""){
+			User user = userService.selectByUserName(userName);
+			if (user!=null){
+				
+			}
+		}
+		return "";
+	}*/
 }

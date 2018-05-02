@@ -4,9 +4,9 @@
 <head>
 <title>information</title>
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<link href='https://fonts.googleapis.com/css?family=Playball' rel='stylesheet' type='text/css'> 
-<script type="text/javascript" src="js/jquery-1.8.3.js"></script>  
+<script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/menu.js">
+</script>  
 <script type="text/javascript">
 	function judeInput(){
 		var realname = document.getElementById("realname");
@@ -50,7 +50,7 @@
 			idnum.focus();
 			return false;
 		}
-		/* if (idnum != "" && idnum != null) {
+		 if (idnum != "" && idnum != null) {
 			var idnumValue = idnum.value;
 			 var city={11:"北京",12:"天津",13:"河北",14:"山西",15:"内蒙古",21:"辽宁",22:"吉林",23:"黑龙江 ",31:"上海",32:"江苏",33:"浙江",34:"安徽",35:"福建",36:"江西",37:"山东",41:"河南",42:"湖北 ",43:"湖南",44:"广东",45:"广西",46:"海南",50:"重庆",51:"四川",52:"贵州",53:"云南",54:"西藏 ",61:"陕西",62:"甘肃",63:"青海",64:"宁夏",65:"新疆",71:"台湾",81:"香港",82:"澳门",91:"国外 "};
 	            var tip = "";
@@ -92,7 +92,7 @@
 	            }
 	            if(!pass) alert(tip);
 	            return false;
-		} */
+		} 
 		if (idnum != "" && idnum != null) {
 			var idnumValue = idnum.value;
 		}
@@ -134,10 +134,10 @@
 		<div class="menu"> 	
 			<div class="top-nav"> 
 					<ul>
-						<li><a href="index.jsp">Home</a></li>
-						<li><a href="about.html">About</a></li>
-						<li><a href="specials.html">Specials</a></li>
-						<li><a href="new.html">New</a></li>
+						<li><a href="index.jsp">主页</a></li>
+						<li><a href="about.jsp">详情</a></li>
+						<li><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li class="active"><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
 					<div class="clear"></div> 
@@ -154,19 +154,19 @@
 				  	<h3>Information</h3>
 					    <form method="post" action="contact-post.html">
 					    	<div>
-						     	<span><label>LOGIN NAME</label><a style="color:red">*</a></span>
+						     	<span><label>登录账号：</label><a style="color:red">*</a></span>
 						    	<span><input name="username" type="text" class="textbox" value="${User.userName}" disabled="disabled"></span>
 						    </div>
 					    	<div>
-						    	<span><label>NAME</label><a style="color:red">*</a></span>
+						    	<span><label>收货人名称：</label><a style="color:red">*</a></span>
 						    	<span><input name="realname" type="text" class="textbox" id="realname"></span>
 						    </div>
 						    <div>
-						    	<span><label>E-MAIL</label></span>
+						    	<span><label>电子邮箱：</label></span>
 						    	<span><input name="email" type="text" class="textbox" id="email"></span>
 						    </div>
 						    <div>
-						     	<span><label>MOBILE</label><a style="color:red">*</a></span>
+						     	<span><label>手机号码：</label><a style="color:red">*</a></span>
 						    	<span><input name="phone" type="text" class="textbox" id="phone"></span>
 						    </div>
 						    <!-- <div>
@@ -174,11 +174,11 @@
 						    	<span><textarea name="userMsg"> </textarea></span>
 						    </div> -->
 						    <div>
-						     	<span><label>IDNUMBER</label><a style="color:red">*</a></span>
+						     	<span><label>身份证号码：</label><a style="color:red">*</a></span>
 						    	<span><input name="id_num" type="text" class="textbox" id="idnum"></span>
 						    </div>
 						    <div>
-						     	<span><label>ADDRESS</label><a style="color:red">*</a></span>
+						     	<span><label>地址：</label><a style="color:red">*</a></span>
 						    	<span><input name="address" type="text" class="textbox" id="address"></span>
 						    </div>
 						   <div>
@@ -200,57 +200,7 @@
   				</div><div class="clear"></div>
 			</div>
 		</div>
-		<div class="header-para">
-				<div class="categories">
-						<div class="list-categories">
-							<div class="first-list">
-								<div class="div_2"><a href="">Cars</a></div>
-								<div class="div_img">
-									<img src="images/car1.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Rental</a></div>
-								<div class="div_img">
-									<img src="images/car2.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Banking</a></div>
-								<div class="div_img">
-									<img src="images/car3.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-							<div class="first-list">
-								<div class="div_2"><a href="">Trucks</a></div>
-								<div class="div_img">
-									<img src="images/car4.jpg" alt="Cars" title="Cars" width="60" height="39">
-								</div><div class="clear"></div>
-							</div>
-				</div>
-				<div class="box"> 
-							<div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
-							 <div class="box-content">
-							Now in your cart&nbsp;<strong> 0 items</strong>
-							</div>	
-				</div>
-				<div class="box-title">
-					<h1><span class="title-icon"></span><a href="">Specials</a></h1>
-				</div>
-				<div class="section group example">
-					<div class="col_1_of_2 span_1_of_2">
-					  <img src="images/pic21.jpg" alt=""/>
-					   <img src="images/pic24.jpg" alt=""/>
-					   <img src="images/pic25.jpg" alt=""/>
-					</div>
-					<div class="col_1_of_2 span_1_of_2">
-						 <img src="images/pic22.jpg" alt=""/>
-					  	<img src="images/pic23.jpg" alt=""/>
-					  	<img src="images/pic26.jpg" alt=""/>
-					</div><div class="clear"></div>
-		   		 </div>
-				</div>
-	</div>
+		<jsp:include page="right.jsp" ></jsp:include>
 		<div class="clear"></div>
 		
 </div>

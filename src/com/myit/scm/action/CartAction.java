@@ -102,6 +102,7 @@ public class CartAction {
 		if(cart2.getCartThings().equals(car.getCarBrand())){
 			Cart cartPriceAndAmount = cartPriceAndAmount(amount, car,cart2);
 			cartPriceAndAmount.setCartUserId(userId);
+			cartPriceAndAmount.setCarId(car.getCarId());
 			insertOneCart= cartService.updateCartByUserId(cartPriceAndAmount);
 		}else{
 			insertOneCart = cartNoThings(cart, car);
@@ -120,6 +121,7 @@ public class CartAction {
 		cart.setCartAmount(1);
 		cart.setCartThings(car.getCarBrand());
 		cart.setCartPrice(car.getCarPrice());
+		cart.setCarId(car.getCarId());
 		insertOneCart = cartService.insertOneCart(cart);
 		return insertOneCart;
 	}
@@ -152,4 +154,19 @@ public class CartAction {
 		return "{\"key\":\"0\"}";
 	}
 	
+	/**
+	 * 通过cartid来查询购物车记录，然后获取购物车中数量进行比较，如果是的话，直接更新ispay，
+	 * 如果数量不一致的话，更新数量跟价格，然后更新ispay
+	 * 然后再更新car表中数量
+	 * @param cartId
+	 * @param cartAmount
+	 * @return
+	 */
+	@RequestMapping(value="/buyCar")
+	public String buyCar(int cartId,int cartAmount,int carId){
+		if(cartId>0 && cartAmount>0){
+			//TODO 上面的内容
+		}
+		return "";
+	}
 }

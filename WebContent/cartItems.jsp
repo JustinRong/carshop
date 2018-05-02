@@ -39,8 +39,23 @@ $(function(){
 	cartprice.val(parseInt(count));
 	}) 
 	
-	}) 
+	})
+	
+$(function(){
+	$(".button2").click(function(){
+		debugger;
+		var cartId=$(this).parent().find('input[class*=cart_id]').val();
+		var carId=$(this).parent().find('input[class*=car_id]').val();
+		var cartamount = $(this).parent().find("input[class*=cartAmount]").val();
+		if(carId!=null &&carId!="" &&cartamount!=null && cartamount!=""){
+			$.ajax({
+				
+			})
+		}
+	})
+})
 </script>
+
 </head>
 <body>
 <c:forEach items="${Cart }" var="cart" varStatus="status">
@@ -50,6 +65,7 @@ $(function(){
 <c:if test="${ status.count != 3*(status.index)+1 }">
 <div class="grid_1_of_3 images_1_of_3" >
 </c:if>
+											<!-- <div><input type="checkbox" name="" value=""></div> -->
 										  <div class="grid_1">
 										<a href="single.html"><img src="images/pic14.jpg" title="continue reading" alt=""></a>
 											<div class="grid_desc">
@@ -63,10 +79,17 @@ $(function(){
 															<input class="text_box" style="width: 10%;" name="" type="text" value="${cart.cartAmount }" /> 
 														 	<input class="add" name="" type="button" value="+" />
 													 	 <%-- <span style="float: right">数量：${cart.cartAmount }</span> --%>
+													 	 	<div class="clear"></div>
+													 	 	<button class="button1"><span>删除</span></button>
+															<button class="button2"><span>购买</span></button>
+															<input class="cart_id" style="display:none" value="${cart.cartId}"/>
+															<input class="car_id" style="display:none" value="${cart.carId}"/>
 													</div>
-													<div class="cart-button">
+													
+													<div class="cart-button" style="margin-top: 10%;">
 														<div class="cart">
 															<button class="button"><span>Details</span></button>
+															<input class="text_box" style="display:none" value="${cart.carId}"/>
 														</div>
 														<!-- <button class="button"><span>Cart</span></button> -->
 													<div class="clear"></div>

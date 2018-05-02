@@ -7,8 +7,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
+<script type="text/javascript" src="js/CarDetail.js"></script>
 <script type="text/javascript">
-	function addCars(carId){
+function addCars(carId){
+	debugger;
 		var username= "${User.userName }";
 		if (username == "" || username == null){
 			alert("您还没登录，请先登录！");
@@ -28,33 +30,7 @@
 			}
 		})
 	}
-</script>
-<script type="text/javascript">
-	$(function(){
-		$(".button").click(function(){
-			debugger;
-			var carId=$(this).parent().find('input[class*=text_box]').val(); 
-			$.ajax({
-				url:"./cars/searchOneCar.action",
-				data:{"carId":carId},
-				type:"post",
-				dataType:"json",
-				success:function(data){
-					if(data.url!=null){
-						window.location.href=data.url;
-					}
-				},
-				error:function(XMLHttpRequest, textStatus, errorThrown){
-					 // 状态码
-                    console.log(XMLHttpRequest.status);
-                    // 状态
-                    console.log(XMLHttpRequest.readyState);
-                    // 错误信息   
-                    console.log(textStatus);
-				}
-			})
-		})
-	})
+
 </script>
 </head>
 <body>

@@ -7,6 +7,8 @@ public class Cart {
 	private double cartPrice;//价格
 	private int cartAmount;//数量
 	private int cartUserId;//用户Id
+	private int carId;//车辆ID
+	private boolean isPay;//是否结算
 	private Cars cars;//车辆
 	
 	public Cars getCars() {
@@ -45,14 +47,26 @@ public class Cart {
 	public void setCartAmount(int cartAmount) {
 		this.cartAmount = cartAmount;
 	}
+	
+	public int getCarId() {
+		return carId;
+	}
+	public void setCarId(int carId) {
+		this.carId = carId;
+	}
+	
+	public boolean isPay() {
+		return isPay;
+	}
+	public void setPay(boolean isPay) {
+		this.isPay = isPay;
+	}
 	@Override
 	public String toString() {
 		return "Cart [cartId=" + cartId + ", cartThings=" + cartThings + ", cartPrice=" + cartPrice + ", cartAmount="
-				+ cartAmount + ", cartUserId=" + cartUserId + ", cars=" + cars + "]";
+				+ cartAmount + ", cartUserId=" + cartUserId + ", carId=" + carId + ", isPay=" + isPay + ", cars=" + cars
+				+ "]";
 	}
-	
-	
-	
 	
 	
 }

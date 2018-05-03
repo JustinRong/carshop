@@ -164,9 +164,43 @@ public class CartAction {
 	 */
 	@RequestMapping(value="/buyCar")
 	public String buyCar(int cartId,int cartAmount,int carId){
-		if(cartId>0 && cartAmount>0){
+		if(cartId>0 && cartAmount>0 && carId>0){
 			//TODO 上面的内容
+		  Cart cart = cartService.selectOneByCartId(cartId);
+		  if(cart !=null) {
+		    //判断数量是否相等
+		    if(cart.getCartAmount()==cartAmount) {
+		      //更新购物车状态，将商品设置为已购（is_pay=1）
+		      cartService.updateCartIsPay(cartId);
+		    }else {
+		      int amount = cart.getCartAmount();
+		      double price = cart.getCartPrice();
+		      double single = price/amount;
+		      cart.setCartAmount(cartAmount);
+		      cart.setCartPrice(single*cartAmount);
+		      //更新购物车信息
+		      int update = cartService.updateCartByUserId(cart);
+		      if(update>0) {
+		        //更新购物状态
+		        int update1 = cartService.updateCartIsPay(cartId);
+		        if(update1>0) {
+		          //根据carid查询cars表中的车辆
+		          Cars car = carsService.selectOneById(carId);
+		          if(cartAmount>amount) {//如果传入来的数量大于查询的数量，则减少Cars表中该汽车的数量
+		            int num = cartAmount-amount;
+		            car.setCarAmount(car.getCarAmount()-num);
+		          }
+		          if(cartAmount<amount) {//如果传入来的数量小于查询的数量，则增加Cars表中该汽车的数量
+		            int num = amount-cartAmount;
+		            car.setCarAmount(car.getCarAmount()+num);
+		          }
+		          carsService.updateAmountByIdAndBrand(car);
+		          return "{\"key\":\"1\"}";
+		        }
+		      }
+		    }
+		  }
 		}
-		return "";
+		return "{\"key\":\"0\"}";
 	}
 }

@@ -26,7 +26,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            <if test="cartPrice!=null">cart_price = #{cartPrice},</if>
            <if test="cartAmount!=null">cart_amount = #{cartAmount},</if>
        </trim>
-       where cart_user_id = #{cartUserId} and cart_things = #{cartThings} and car_id = #{carId}
+       where cart_user_id = #{cartUserId} and cart_things = #{cartThings} and car_id = #{carId} and is_pay=0
    </update>
    
    <!-- 查询购物车的数量 -->
@@ -56,6 +56,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 根据cart_id进行查询 -->
    <select id="selectOneByCartId" parameterType="Integer" resultMap="cartResultMap">
-       selecr * from cart where cart_id=#{_parameter}
+       select * from cart where cart_id=#{_parameter} and is_pay=0
    </select>
 </mapper>

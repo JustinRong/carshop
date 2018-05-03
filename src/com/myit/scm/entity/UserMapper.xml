@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     </resultMap>
     
     <select id="selectOne" resultMap="userResultMap">
-        select * from user where username = #{0} and password = #{1}
+        select * from user where username = #{arg0} and password = #{arg1} and permission=1
     </select>
     
     <insert id="addOne" parameterType="User">

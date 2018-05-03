@@ -49,7 +49,17 @@ $(function(){
 		var cartamount = $(this).parent().find("input[class*=cartAmount]").val();
 		if(carId!=null &&carId!="" &&cartamount!=null && cartamount!=""){
 			$.ajax({
-				
+				url:"./cart/buyCar.action",
+				data:{"cartId":cartId,"cartAmount":cartamount,"carId":carId},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data.key==1){
+						alert("购买成功！");
+					}else{
+						alert("购买失败！");
+					}
+				}
 			})
 		}
 	})

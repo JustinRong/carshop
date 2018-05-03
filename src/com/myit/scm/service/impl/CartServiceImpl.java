@@ -52,4 +52,16 @@ public class CartServiceImpl implements CartService {
 		return cartDao.selectCartAll();
 	}
 
+  @Override
+  public Cart selectOneByCartId(int cartId) {
+    // TODO Auto-generated method stub
+    return cartDao.selectOneByCartId(cartId);
+  }
+
+  @Override
+  public int updateCartIsPay(int cartId) {
+    // TODO Auto-generated method stub
+    return cartDao.updateCartIsPay(cartId);
+  }
+
 }

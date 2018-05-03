@@ -24,4 +24,10 @@ public interface CartDao {
 	
 	//查询购物车中所有的商品信息
 	public List<Cart> selectCartAll();
+	
+	//根据cart_id来查找购物车信息
+	public Cart selectOneByCartId(int cartId);
+	
+	//购买成功后将结算状态改为1
+	public int updateCartIsPay(int cartId);
 }

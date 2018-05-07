@@ -60,4 +60,16 @@ public class CarsAction {
 		}
 		return "{\"url\":\"1\"}";
 	}*/
+	
+	@RequestMapping(value="/selectAllCars")
+	@ResponseBody
+	public String selectAllCars(HttpSession session) {
+	  List<Cars> cars = carsService.selectAllCars();
+	  System.out.println(cars.toString());
+	  if (cars!=null) {
+	    session.setAttribute("allCars", cars);
+	      return "{\"key\":\"1\"}";
+      }
+	 return "{\"key\":\"0\"}";
+	}
 }

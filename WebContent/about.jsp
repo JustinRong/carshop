@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="js/menu.js">
 </script>
+<script src="js/cars.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="header-bg">
@@ -22,7 +23,7 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li class="active"><a href="about.jsp">详情</a></li>
-						<li><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectAllCars('${User.userName }')">车型</a></li>
 						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li> 
 					</ul>

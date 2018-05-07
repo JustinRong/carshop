@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <!-- 通过车品牌来模糊查询 -->
     <select id="selectAllOrOne" parameterType="java.lang.String" resultMap="carsResultMap">
         select * from cars
-            where car_brand like #{_parameter} limit 3
+            where car_brand like #{_parameter} 
     </select>
     
     <!-- 通过车Id来条件查询 -->
@@ -27,4 +27,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <update id="updateAmountByIdAndBrand" parameterType="Cars">
         update cars set car_amount = #{carAmount} where car_id =#{carId} and car_brand=#{carBrand}
     </update> 
+    
+    <!-- 查询所有汽车 -->
+    <select id="selectAllCars" resultMap="carsResultMap">
+    	select * from cars
+    </select>
 </mapper>

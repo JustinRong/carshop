@@ -15,4 +15,7 @@ public interface CarsDao {
 	
 	//通过车id跟车品牌来更新车数量
 	public int updateAmountByIdAndBrand(Cars car);
+	
+	//查询所有汽车
+	public List<Cars> selectAllCars();
 }

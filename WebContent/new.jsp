@@ -12,6 +12,7 @@
 </script>
 <script type="text/javascript" src="js/cartOrder.js">
 </script>
+<script src="js/cars.js" type="text/javascript"></script>
 <style >
 .sumBtn {
     border: 1px solid #D9D9D9;
@@ -50,7 +51,7 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">详情</a></li>
-						<li><a href="specials.jsp">车型</a></li>
+						<li><a href="#" onclick="selectAllCars('${User.userName }')">车型</a></li>
 						<li class="active"><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li>
 						<li><a href="#" onclick="cartOrder('${User.userName }')">订单信息</a></li>

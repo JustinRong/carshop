@@ -8,6 +8,7 @@
 <script type="text/javascript" src="js/jquery-1.8.3.js"></script>
 <script type="text/javascript" src="js/menu.js">
 </script>
+<script src="js/cars.js" type="text/javascript"></script>
 </head>
 <body>
 <div class="header-bg">
@@ -22,7 +23,7 @@
 					<ul>
 						<li><a href="index.jsp">主页</a></li>
 						<li><a href="about.jsp">详情</a></li>
-						<li class="active"><a href="specials.jsp">车型</a></li>
+						<li class="active"><a href="#" onclick="selectAllCars('${User.userName }')">车型</a></li>
 						<li><a href="#" onclick="selectCart('${User.userName }')">购物车</a></li>
 						<li><a href="contact.jsp" id="info">个人信息</a></li>
 					</ul>
@@ -38,66 +39,8 @@
 							  	<div class="about_wrapper"><h1>Specials</h1>
 								</div>
 							 <div class="text"> 	
-								<div class="grid_1_of_3 images_1_of_3">
-									<div class="grid_1">
-										<a href="single.html"><img src="images/pic12.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-							</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic13.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div>
-									<div class="grid_1_of_3 images_1_of_3">
-										  <div class="grid_1">
-										<a href="single.html"><img src="images/pic14.jpg" title="continue reading" alt=""></a>
-											<div class="grid_desc">
-												<p class="title">Lorem ipsum dolor sitconsectetuer adipiscing elit</p>
-												
-													 <div class="price" style="height: 19px;">
-													 	 <span class="reducedfrom">$66.00</span>
-								        				<span class="actual">$12.00</span>
-													</div>
-													<div class="cart-button">
-														<div class="cart">
-															<button class="button"><span>Details</span></button>
-														</div>
-														<button class="button"><span>Cart</span></button>
-													<div class="clear"></div>
-												</div>
-											</div>
-								</div><div class="clear"></div>
-									</div><div class="clear"></div>
+							 	<jsp:include page="allCarsItems.jsp" ></jsp:include>
+								<div class="clear"></div>
 								</div>
 						</div>
 						<div class="content-top">

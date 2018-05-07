@@ -34,4 +34,10 @@ public class CarsServiceImpl implements CarsService {
 		return carsDao.updateAmountByIdAndBrand(car);
 	}
 
+  @Override
+  public List<Cars> selectAllCars() {
+    // TODO Auto-generated method stub
+    return carsDao.selectAllCars();
+  }
+
 }

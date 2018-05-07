@@ -43,7 +43,6 @@ $(function(){
 	
 $(function(){
 	$(".button2").click(function(){
-		debugger;
 		var cartId=$(this).parent().find('input[class*=cart_id]').val();
 		var carId=$(this).parent().find('input[class*=car_id]').val();
 		var cartamount = $(this).parent().find("input[class*=cartAmount]").val();
@@ -56,8 +55,33 @@ $(function(){
 				success:function(data){
 					if(data.key==1){
 						alert("购买成功！");
+						window.location.href="new.jsp";
 					}else{
 						alert("购买失败！");
+					}
+				}
+			})
+		}
+	})
+})
+
+$(function(){
+	$(".button1").click(function(){
+		debugger;
+		var cartId=$(this).parent().find('input[class*=cart_id]').val();
+		var carId=$(this).parent().find('input[class*=car_id]').val();
+		if(carId!=null &&carId!="" &&cartId!=null &&cartId!=""){
+			$.ajax({
+				url:"./cart/deleteCar.action",
+				data:{"cartId":cartId,"carId":carId},
+				type:"post",
+				dataType:"json",
+				success:function(data){
+					if(data.key==1){
+						alert("删除成功！");
+						window.location.href="new.jsp";
+					}else{
+						alert("删除失败！");
 					}
 				}
 			})

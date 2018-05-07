@@ -30,4 +30,10 @@ public interface CartService {
     
   //购买成功后将结算状态改为1
     public int updateCartIsPay(int cartId);
+    
+  //根据cartUserID来查询购物车中已购车辆信息
+  	public List<Cart> selectByCartUserId(int cartUserId);
+  	
+  	//根据Cart中的cartid和carid来删除数据
+  	public int deleteByCartIdAndCarId(Cart cart);
 }

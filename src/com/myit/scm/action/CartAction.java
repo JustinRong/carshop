@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myit.scm.entity.Cars;
 import com.myit.scm.entity.Cart;
+import com.myit.scm.entity.User;
 import com.myit.scm.service.CarsService;
 import com.myit.scm.service.CartService;
 import com.myit.scm.service.UserService;
@@ -44,12 +45,7 @@ public class CartAction {
 				int insertOneCart =0;
 				insertOneCart = judeInsertOrUpdate(userName, cart, insertOneCart,car, amount);
 				if(insertOneCart>0){
-					int allThings = cartService.selectAllThings(cart.getCartUserId());
-					if(allThings>0){
-						System.out.println("**********************"+allThings);
-						/*model.addAttribute("Cart", allThings);*/
-						session.setAttribute("cartCount", allThings);
-					}
+					cartCount(session, cart);
 				}
 			}
 		}
@@ -146,10 +142,20 @@ public class CartAction {
 	
 	@RequestMapping(value="/selectCartAll")
 	@ResponseBody
-	public String selectAll(ModelMap model){
-		List<Cart> cartList = cartService.selectCartAll();
-		if(cartList.size()>0){
-			model.addAttribute("Cart", cartList);
+	public String selectAll(ModelMap model,String userNameCount,HttpSession session){
+		System.out.println("********************"+userNameCount);
+		if(userNameCount!=null && userNameCount!=""){
+			User user = userService.selectByUserName(userNameCount);
+			if(user!=null){
+				List<Cart> cartList = cartService.selectCartAll();
+				model.addAttribute("Cart", cartList);
+				int allThings = cartService.selectAllThings(user.getuserId());
+				if(allThings>0){
+					System.out.println("**********************"+allThings);
+					/*model.addAttribute("Cart", allThings);*/
+					session.setAttribute("cartCount", allThings);
+				}
+			}
 		}
 		return "{\"key\":\"0\"}";
 	}
@@ -163,15 +169,18 @@ public class CartAction {
 	 * @return
 	 */
 	@RequestMapping(value="/buyCar")
-	public String buyCar(int cartId,int cartAmount,int carId){
+	@ResponseBody
+	public String buyCar(int cartId,int cartAmount,int carId,HttpSession session){
 		if(cartId>0 && cartAmount>0 && carId>0){
-			//TODO 上面的内容
 		  Cart cart = cartService.selectOneByCartId(cartId);
 		  if(cart !=null) {
 		    //判断数量是否相等
 		    if(cart.getCartAmount()==cartAmount) {
 		      //更新购物车状态，将商品设置为已购（is_pay=1）
-		      cartService.updateCartIsPay(cartId);
+		      int update0 = cartService.updateCartIsPay(cartId);
+		      if (update0>0)
+		      cartCount(session, cart);
+		      return "{\"key\":\"1\"}"; 
 		    }else {
 		      int amount = cart.getCartAmount();
 		      double price = cart.getCartPrice();
@@ -194,12 +203,76 @@ public class CartAction {
 		            int num = amount-cartAmount;
 		            car.setCarAmount(car.getCarAmount()+num);
 		          }
-		          carsService.updateAmountByIdAndBrand(car);
+		          int update2 = carsService.updateAmountByIdAndBrand(car);
+		          cartCount(session, cart);
+		          if(update2>0)
 		          return "{\"key\":\"1\"}";
 		        }
 		      }
 		    }
 		  }
+		}
+		return "{\"key\":\"0\"}";
+	}
+
+	/**
+	 * 统计购物车中商品的数量
+	 * @param session
+	 * @param cart
+	 */
+	public void cartCount(HttpSession session, Cart cart) {
+		int allThings = cartService.selectAllThings(cart.getCartUserId());
+				System.out.println("**********************"+allThings);
+				/*model.addAttribute("Cart", allThings);*/
+				session.setAttribute("cartCount", allThings);
+	}
+	
+	/**
+	 * 订单信息，根据cartUserId进行查询已经购买的汽车信息状态
+	 * @return
+	 */
+	@RequestMapping(value="/carBuyMess")
+	@ResponseBody
+	public String selectCartBuied(String username,HttpSession session){
+		int cartUserId=0;
+		if(username!=null && username!=""){
+			cartUserId = userService.selectIdByName(username);
+			User user = userService.selectByUserName(username);
+			if(user!=null){
+				session.setAttribute("userForOrder", user);
+			}
+		}
+		if(cartUserId>0){
+			List<Cart> cartList = cartService.selectByCartUserId(cartUserId);
+			if(cartList!=null){
+				session.setAttribute("orderCart", cartList);
+				return "{\"key\":\"1\"}";
+			}
+		}
+		return "{\"key\":\"0\"}";
+	}
+	
+	/**
+	 * 删除购物车中商品
+	 * @param cartId
+	 * @param carId
+	 * @param session
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping(value="/deleteCar")
+	public String deleteCar(int cartId,int carId,HttpSession session){
+		if(carId>0 && cartId>0){
+			Cart cart = cartService.selectOneByCartId(cartId);
+			int amount = cart.getCartAmount();
+			Cars car = carsService.selectOneById(carId);
+			car.setCarAmount(car.getCarAmount()+amount);
+			int update = carsService.updateAmountByIdAndBrand(car);
+			int delete = cartService.deleteByCartIdAndCarId(cart);
+			if (delete>0)
+			cartCount(session, cart);
+			if (update>0)
+			return  "{\"key\":\"1\"}";
 		}
 		return "{\"key\":\"0\"}";
 	}

@@ -41,7 +41,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    
    <!-- 通过userid和carBrand来查询购物车中是否有记录 -->
    <select id="selectByUserIdAndCarBrand" resultMap="cartResultMap">
-       select * from cart where cart_user_id = #{0} and cart_things=#{1}
+       select * from cart where cart_user_id = #{arg0} and cart_things=#{arg1} and is_pay=0
    </select>
    
    <!-- 查询购物车中所有的商品信息 -->
@@ -58,4 +58,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    <select id="selectOneByCartId" parameterType="Integer" resultMap="cartResultMap">
        select * from cart where cart_id=#{_parameter} and is_pay=0
    </select>
+   
+   <!-- 根据cartUserid进行购物车已买车辆查询 -->
+   <select id="selectByCartUserId" resultMap="cartResultMap">
+       select * from cart where cart_user_id = #{_parameter} and is_pay =1
+   </select>
+   
+   <!-- 根据cartid carid删除购物车中商品信息 -->
+   <delete id="deleteByCartIdAndCarId" parameterType="Cart">
+       delete from cart where cart_id = #{cartId} and car_id = #{carId} and is_pay=0
+   </delete>
 </mapper>

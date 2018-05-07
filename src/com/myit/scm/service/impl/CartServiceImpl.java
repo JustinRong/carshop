@@ -64,4 +64,16 @@ public class CartServiceImpl implements CartService {
     return cartDao.updateCartIsPay(cartId);
   }
 
+@Override
+public List<Cart> selectByCartUserId(int cartUserId) {
+	// TODO Auto-generated method stub
+	return cartDao.selectByCartUserId(cartUserId);
+}
+
+@Override
+public int deleteByCartIdAndCarId(Cart cart) {
+	// TODO Auto-generated method stub
+	return cartDao.deleteByCartIdAndCarId(cart);
+}
+
 }

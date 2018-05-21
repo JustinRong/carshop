@@ -19,7 +19,7 @@
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="com.mysql.jdbc.Driver"></property>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/saledb"></property>
+        <property name="jdbcUrl" value="jdbc:mysql://localhost:3306/saledb?useUnicode=true&amp;characterEncoding=utf-8&amp;serverTimezone=GMT"></property>
         <property name="user" value="root"></property>
         <property name="password" value="123456"></property>
     </bean>
@@ -71,5 +71,12 @@
         <property name="sqlSessionFactory" ref="sqlSessionFactory"></property>
         <property name="basePackage" value="com.myit.scm.dao"></property>
     </bean>
+    
+    <!-- 多部分文件上传 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760000"></property>  
+        <property name="maxInMemorySize" value="40960"></property>  
+   </bean>
     
 </beans>

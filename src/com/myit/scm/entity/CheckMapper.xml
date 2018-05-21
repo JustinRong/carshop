@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myit.scm.dao.CheckDao">
+    <resultMap type="Check" id="checkResultMap">
+        <id property="checkId" column="check_id"/>
+        <result property="checkCarId" column="check_car_id"/>
+        <result property="checkCarBrand" column="check_car_brand"/>
+        <result property="checkCarPerson" column="check_person"/>
+        <result property="checkLink" column="check_link"/>
+        <result property="checkInstruction" column="check_instruction"/>
+        <result property="checkDate" column="check_date"/>
+        <result property="checkSolved" column="check_solved"/>
+    </resultMap>
+    
+    <!-- 添加信息 -->
+    <insert id="insertOne" parameterType="Check">
+    	insert into carCheck(check_car_id,check_car_brand,check_person,check_link,check_instruction,check_date,check_solved)
+    	values (#{checkCarId},#{checkCarBrand},#{checkCarPerson},#{checkLink},#{checkInstruction},#{checkDate},0)
+    </insert>
+    
+    <!-- 查找所有的问题信息 -->
+    <select id="selectAll" resultMap="checkResultMap">
+    	select * from carCheck where check_solved=0
+    </select>
+    
+    <!-- 更新修复状态 -->
+    <update id="updateCheckById">
+    	update carCheck set check_solved=1 where check_id = #{arg0}
+    </update>
+</mapper>

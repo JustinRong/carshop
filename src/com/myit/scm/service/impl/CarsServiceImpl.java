@@ -40,4 +40,22 @@ public class CarsServiceImpl implements CarsService {
     return carsDao.selectAllCars();
   }
 
+  @Override
+  public int addCar(Cars car) {
+    // TODO Auto-generated method stub
+    return carsDao.addCar(car);
+  }
+
+  @Override
+  public int updateCarById(Cars car) {
+    // TODO Auto-generated method stub
+    return carsDao.updateCarById(car);
+  }
+
+  @Override
+  public int deleteCarByIdAndBrand(int carId, String carBrand) {
+    // TODO Auto-generated method stub
+    return carsDao.deleteCarByIdAndBrand(carId, carBrand);
+  }
+
 }

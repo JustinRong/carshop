@@ -1,5 +1,8 @@
 package com.myit.scm.action;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,18 +51,18 @@ public class CarsAction {
 		return "{\"key\":\"0\"}";
 	}
 	
-	/*@RequestMapping(value="/searchOneCar")
+	@RequestMapping(value="/searchOneCar")
 	@ResponseBody
 	public String selectOneCar(int carId,HttpSession session){
 		if(carId >0){
 			Cars car = carsService.selectOneById(carId);
 			if (car !=null){
-				session.setAttribute("carDetail", car);
-				return "{\"url\":\"carDetail.jsp\"}";
+				session.setAttribute("carForEdit", car);
+				return "{\"key\":\"1\"}";
 			}
 		}
-		return "{\"url\":\"1\"}";
-	}*/
+		return "{\"key\":\"0\"}";
+	}
 	
 	@RequestMapping(value="/selectAllCars")
 	@ResponseBody
@@ -71,5 +74,49 @@ public class CarsAction {
 	      return "{\"key\":\"1\"}";
       }
 	 return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/addCar")
+	@ResponseBody
+	public String addCar(String carBrand,double carPrice,int carAmount,String carInstruction,Date carDate) {
+	  Cars cars = new Cars();
+	  cars.setCarBrand(carBrand);
+	  cars.setCarAmount(carAmount);
+	  cars.setCarInstruction(carInstruction);
+	  cars.setCarPrice(carPrice);
+	  cars.setCarDate(carDate);
+	  int addCar = carsService.addCar(cars);
+	  if(addCar>0) {
+	    return "{\"key\":\"1\"}";
+	  }
+	  return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/updateCar")
+	@ResponseBody
+	public String updateCar(int carId,String carBrand,double carPrice,int carAmount,String carInstruction,Date carDate) {
+	  Cars cars = new Cars();
+	  cars.setCarId(carId);
+	  cars.setCarAmount(carAmount);
+	  cars.setCarBrand(carBrand);
+	  cars.setCarDate(carDate);
+	  cars.setCarInstruction(carInstruction);
+	  cars.setCarPrice(carPrice);
+	  cars.setCarUrl(null);
+	  int update = carsService.updateCarById(cars);
+	  if (update>0) {
+        return "{\"key\":\"1\"}";
+      }
+	  return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/deleteCar")
+	@ResponseBody
+	public String deleteCar(int carId,String carBrand) {
+	  int delete = carsService.deleteCarByIdAndBrand(carId, carBrand);
+	  if (delete>0) {
+	    return "{\"key\":\"1\"}";
+      }
+	  return "{\"key\":\"0\"}";
 	}
 }

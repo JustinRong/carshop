@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.myit.scm.entity.Cars;
 import com.myit.scm.entity.Cart;
+import com.myit.scm.entity.Order;
 import com.myit.scm.entity.User;
 import com.myit.scm.service.CarsService;
 import com.myit.scm.service.CartService;
@@ -275,5 +276,69 @@ public class CartAction {
 			return  "{\"key\":\"1\"}";
 		}
 		return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/selectAllOrder")
+	@ResponseBody
+	public String selectAllOrder(HttpSession session) {
+	  List<Cart> allOrder = cartService.selectAllOrder();
+	  List<Order> orders = new ArrayList<>();
+	  Order order = null;
+	  if (allOrder.size()>0) {
+        for (Cart cart : allOrder) {
+            int userId = cart.getCartUserId();
+            if (userId>0) {
+              User user = userService.selectOneById(userId);
+              if (user!=null) {
+                order=new Order();
+                order.setCartId(cart.getCartId());
+                order.setAddress(user.getAddress());
+                order.setCarAmount(cart.getCartAmount());
+                order.setCarBrand(cart.getCartThings());
+                order.setCardId(user.getIdNum());
+                order.setCarId(cart.getCarId());
+                order.setCarPrice(cart.getCartPrice());
+                if (cart.isOrder()) {
+                  order.setIsOrder(1);
+                }else {
+                  order.setIsOrder(0);
+                }
+                if (cart.isPay()) {
+                  order.setIsPay(1);
+                }else {
+                  order.setIsPay(0);
+                }
+                order.setUsername(user.getRealName());
+                orders.add(order);
+              }else {
+                session.setAttribute("allOrders", orders);
+                return "{\"key\":\"3\"}";//没有用户
+              }
+            }
+        }
+        if (orders.size()>0) {
+          session.setAttribute("allOrders", orders);
+          return "{\"key\":\"1\"}";
+        }
+      }else {
+        session.setAttribute("allOrders", orders);
+        return "{\"key\":\"2\"}";//没有订单
+      }
+	  session.setAttribute("allOrders", orders);
+	  return "{\"key\":\"0\"}";
+	}
+	
+	@RequestMapping(value="/updateCartOrder")
+	@ResponseBody
+	public String updateCartOrder(int cartId) {
+	  if (cartId>0) {
+        int updateCartOrder = cartService.updateCartOrder(cartId);
+        if (updateCartOrder>0) {
+          return "{\"key\":\"1\"}";
+        }else {
+          return "{\"key\":\"0\"}";
+        }
+      }
+	  return "{\"key\":\"0\"}";
 	}
 }

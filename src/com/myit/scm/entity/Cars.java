@@ -1,5 +1,7 @@
 package com.myit.scm.entity;
 
+import java.util.Date;
+
 public class Cars {
 	
 	private int carId;//汽车主键
@@ -8,6 +10,7 @@ public class Cars {
 	private int carAmount;//汽车数量
 	private String carBrand;//汽车品牌
 	private String carUrl;//汽车图片URL
+	private Date carDate;//汽车入库时间
 	public int getCarId() {
 		return carId;
 	}
@@ -45,11 +48,20 @@ public class Cars {
 	public void setCarUrl(String carUrl) {
 		this.carUrl = carUrl;
 	}
-	@Override
-	public String toString() {
-		return "Cars [carId=" + carId + ", carPrice=" + carPrice + ", carInstruction=" + carInstruction + ", carAmount="
-				+ carAmount + ", carBrand=" + carBrand + ", carUrl=" + carUrl + "]";
-	}
 	
+	public Date getCarDate() {
+    return carDate;
+  }
+  public void setCarDate(Date carDate) {
+    this.carDate = carDate;
+  }
+  @Override
+  public String toString() {
+    return "{\"carId\":\"" + carId + "\",\"carPrice\":\"" + carPrice + "\",\"carInstruction\":\""
+        + carInstruction + "\",\"carAmount\":\"" + carAmount + "\",\"carBrand\":\"" + carBrand
+        + "\",\"carUrl\":\"" + carUrl + "\",\"carDate\":\"" + carDate + "\"} ";
+  }
+
+  
 	
 }

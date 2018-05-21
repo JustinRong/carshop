@@ -36,4 +36,10 @@ public interface CartDao {
 	
 	//根据Cart中的cartid和carid来删除数据
   	public int deleteByCartIdAndCarId(Cart cart);
+  	
+  	//查询已经下单还没出库的订单信息
+  	public List<Cart> selectAllOrder();
+  	
+  	//更新订单出库
+  	public int updateCartOrder(int cartId);
 }

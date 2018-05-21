@@ -10,6 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="carAmount" column="car_amount"/>
         <result property="carBrand" column="car_brand"/>
         <result property="carUrl" column="car_url"/>
+        <result property="carDate" column="car_date"/>
     </resultMap>
     
     <!-- 通过车品牌来模糊查询 -->
@@ -32,4 +33,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectAllCars" resultMap="carsResultMap">
     	select * from cars
     </select>
+    
+    <!-- 添加车辆 -->
+    <insert id="addCar" parameterType="Cars">
+    insert into cars(car_price,car_instruction,car_amount,car_brand,car_date) values (#{carPrice},#{carInstruction},#{carAmount},#{carBrand},#{carDate})
+    </insert>
+    
+    <!-- 通过汽车carid来更新信息 -->
+    <update id="updateCarById" parameterType="Cars">
+    	update cars set
+    	car_price = #{carPrice},car_instruction =#{carInstruction},car_amount=#{carAmount},car_url=#{carUrl},car_date=#{carDate}
+    	where car_id =#{carId}
+    </update>
+    
+    <!-- 根据汽车carId和汽车carBrand删除车辆 -->
+    <delete id="deleteCarByIdAndBrand">
+    	delete from cars where car_id =#{arg0} and car_brand=#{arg1}
+    </delete>
 </mapper>

@@ -11,12 +11,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         <result property="cartUserId" column="cart_user_id"/>
         <result property="carId" column="car_id"/>
         <result property="isPay" column="is_pay"/>
+        <result property="isOrder" column="is_order"/>
     </resultMap>
     
    <!-- 添加购物车信息 -->
    <insert id="insertOneCart" parameterType="Cart">
-       insert into cart(cart_id,cart_things,cart_price,cart_amount,cart_user_id,car_id,is_pay) 
-       values (#{cartId},#{cartThings},#{cartPrice},#{cartAmount},#{cartUserId},#{carId},0)     
+       insert into cart(cart_id,cart_things,cart_price,cart_amount,cart_user_id,car_id,is_pay,is_order) 
+       values (#{cartId},#{cartThings},#{cartPrice},#{cartAmount},#{cartUserId},#{carId},0,0)     
    </insert>
    
    <!-- 更新购物车中商品信息 -->
@@ -26,36 +27,56 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
            <if test="cartPrice!=null">cart_price = #{cartPrice},</if>
            <if test="cartAmount!=null">cart_amount = #{cartAmount},</if>
        </trim>
-       where cart_user_id = #{cartUserId} and cart_things = #{cartThings} and car_id = #{carId} and is_pay=0
+       where cart_user_id = #{cartUserId} and cart_things = #{cartThings} and car_id = #{carId} and is_pay=0 and is_order =0
    </update>
    
    <!-- 查询购物车的数量 -->
    <select id="selectAllThings" resultType="Integer">
-       select count(*) from cart where cart_user_id = #{_parameter} and is_pay = 0
+       select count(*) from cart where cart_user_id = #{_parameter} and is_pay = 0 and is_order=0
    </select>
    
    <!-- 通过userID查询购物车中是否有记录 -->
    <select id="selectThingsByUserId" resultMap="cartResultMap">
-       select * from cart where cart_user_id = #{_parameter} and is_pay=0
+       select * from cart where cart_user_id = #{_parameter} and is_pay=0 and is_order=0
    </select>
    
    <!-- 通过userid和carBrand来查询购物车中是否有记录 -->
    <select id="selectByUserIdAndCarBrand" resultMap="cartResultMap">
-       select * from cart where cart_user_id = #{0} and cart_things=#{1}
+       select * from cart where cart_user_id = #{arg0} and cart_things=#{arg1} and is_pay=0 and is_order=0
    </select>
    
    <!-- 查询购物车中所有的商品信息 -->
    <select id="selectCartAll" resultMap="cartResultMap">
-       select * from cart where is_pay=0
+       select * from cart where is_pay=0 and is_order=0
    </select>
    
    <!-- 购买成功后将结算状态改为1 -->
    <update id="updateCartIsPay" parameterType="Integer">
-       update cart set is_pay=1 where cart_id = #{_parameter}
+       update cart set is_pay=1 where cart_id = #{_parameter} and is_order=0
    </update>
    
    <!-- 根据cart_id进行查询 -->
    <select id="selectOneByCartId" parameterType="Integer" resultMap="cartResultMap">
-       select * from cart where cart_id=#{_parameter} and is_pay=0
+       select * from cart where cart_id=#{_parameter} and is_pay=0 and is_order=0
    </select>
+   
+   <!-- 根据cartUserid进行购物车已买车辆查询 -->
+   <select id="selectByCartUserId" resultMap="cartResultMap">
+       select * from cart where cart_user_id = #{_parameter} and is_pay =1 and is_order=0
+   </select>
+   
+   <!-- 根据cartid carid删除购物车中商品信息 -->
+   <delete id="deleteByCartIdAndCarId" parameterType="Cart">
+       delete from cart where cart_id = #{cartId} and car_id = #{carId} and is_pay=0 and is_order=0
+   </delete>
+   
+   <!-- 查询已经下单还没出库的订单信息 -->
+   <select id="selectAllOrder" resultMap="cartResultMap">
+   		select * from cart where is_pay=1 and is_order=0
+   </select>
+   
+   <!-- 更新订单出库 -->
+   <update id="updateCartOrder">
+   	 update cart set is_order=1 where cart_id=#{_parameter} and is_pay=1 
+   </update>
 </mapper>

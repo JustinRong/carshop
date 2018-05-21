@@ -34,6 +34,7 @@
 				return false;
 			}
 		}
+		debugger;
 		if (email.value != "" && email.value != null){
 			var emaiValue = email.value;
 			var reg = new RegExp("^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$"); 
@@ -91,9 +92,15 @@
 	                    }
 	                }
 	            }
-	            if(!pass) alert(tip);
-	            return false;
+	            if(!pass) {
+	            alert(tip);
+	            return false;}
 		} 
+		 if (address.value == "" || address == null ){
+				alert("地址信息不能为空！");
+				address.focus();
+				return false;
+			}
 		if (idnum != "" && idnum != null) {
 			var idnumValue = idnum.value;
 		}

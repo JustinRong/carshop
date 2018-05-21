@@ -18,4 +18,13 @@ public interface CarsDao {
 	
 	//查询所有汽车
 	public List<Cars> selectAllCars();
+	
+	//增加车辆
+	public int addCar(Cars car);
+	
+	//通过carId来更新车辆信息
+	public int updateCarById(Cars car);
+	
+	//根据汽车carId和汽车carBrand删除车辆
+	public int deleteCarByIdAndBrand(int carId,String carBrand);
 }

@@ -76,4 +76,16 @@ public int deleteByCartIdAndCarId(Cart cart) {
 	return cartDao.deleteByCartIdAndCarId(cart);
 }
 
+@Override
+public List<Cart> selectAllOrder() {
+  // TODO Auto-generated method stub
+  return cartDao.selectAllOrder();
+}
+
+@Override
+public int updateCartOrder(int cartId) {
+  // TODO Auto-generated method stub
+  return cartDao.updateCartOrder(cartId);
+}
+
 }

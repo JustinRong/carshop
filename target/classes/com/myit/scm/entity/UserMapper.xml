@@ -44,4 +44,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="selectByUserName" resultMap="userResultMap">
         select * from user where username= #{_parameter} and permission=1
     </select>
+    
+    <!-- 通过useid查询用户信息 -->
+    <select id="selectOneById" resultMap="userResultMap">
+    	select * from user where userid= #{_parameter} and permission=1
+    </select>
 </mapper>

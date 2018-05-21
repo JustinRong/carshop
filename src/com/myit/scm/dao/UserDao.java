@@ -18,4 +18,7 @@ public interface UserDao {
 	
 	//通过username来查询用户
 	public User selectByUserName(String username);
+	
+	//通过useid查询用户信息
+	public User selectOneById(int userId);
 }

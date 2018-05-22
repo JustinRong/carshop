@@ -148,7 +148,7 @@ public class CartAction {
 		if(userNameCount!=null && userNameCount!=""){
 			User user = userService.selectByUserName(userNameCount);
 			if(user!=null){
-				List<Cart> cartList = cartService.selectCartAll();
+				List<Cart> cartList = cartService.selectThingsByUserId(user.getuserId());
 				model.addAttribute("Cart", cartList);
 				int allThings = cartService.selectAllThings(user.getuserId());
 				if(allThings>0){

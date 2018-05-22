@@ -29,7 +29,7 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public Cart selectThingsByUserId(int cartUserId) {
+	public List<Cart> selectThingsByUserId(int cartUserId) {
 		// TODO Auto-generated method stub
 		return cartDao.selectThingsByUserId(cartUserId);
 	}

@@ -14,7 +14,7 @@ public interface CartDao {
 	public int selectAllThings(int cartUserId);
 	
 	//通过userID来查询购物车是否有记录
-	public Cart selectThingsByUserId(int cartUserId);
+	public List<Cart> selectThingsByUserId(int cartUserId);
 	
 	//通过userid跟carBrand来查询购物车中是否有记录
 	public Cart selectByUserIdAndCarBrand(int cartUserId,String carBrand);
